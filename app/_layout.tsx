@@ -1,18 +1,11 @@
-import { Tabs } from "expo-router";
-import { Icon, IconName } from "@/components/icon";
-import Head from "expo-router/head";
+import { Icon, IconName } from "@/components/icon"
+import { Tabs } from "expo-router"
+import Head from "expo-router/head"
 
 function makeIcon(icon: IconName, activeIcon: IconName) {
   return function (props: { size: number; color: string; focused: boolean }) {
-    return (
-      <Icon
-        width={props.size}
-        height={props.size}
-        name={props.focused ? activeIcon : icon}
-        fill={props.color}
-      />
-    );
-  };
+    return <Icon width={props.size} height={props.size} name={props.focused ? activeIcon : icon} fill={props.color} />
+  }
 }
 
 export default function RootLayout() {
@@ -20,14 +13,8 @@ export default function RootLayout() {
     <>
       <Head>
         <title>Expo Twitter</title>
-        <meta
-          name="description"
-          content="A Twitter clone built with Expo Router"
-        />
-        <meta
-          property="og:description"
-          content="A Twitter clone built with Expo Router"
-        />
+        <meta name="description" content="A Twitter clone built with Expo Router" />
+        <meta property="og:description" content="A Twitter clone built with Expo Router" />
         <meta property="og:image" content="/og-image.jpg" />
         <meta property="expo:handoff" content="true" />
         <meta property="expo:spotlight" content="true" />
@@ -63,5 +50,5 @@ export default function RootLayout() {
         />
       </Tabs>
     </>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import { Stack } from "expo-router";
-import Head from "expo-router/head";
-import { Platform, TouchableOpacity } from "react-native";
-import * as Share from "expo-sharing";
-import { Icon } from "@/components/icon";
+import { Stack } from "expo-router"
+import Head from "expo-router/head"
+import { Platform, TouchableOpacity } from "react-native"
+import * as Share from "expo-sharing"
+import { Icon } from "@/components/icon"
 
 export default function DynamicLayout() {
   return (
@@ -11,53 +11,44 @@ export default function DynamicLayout() {
         headerLargeTitle: true,
         headerRight(props) {
           if (isSharingAvailable()) {
-            return <ShareButton {...props} />;
+            return <ShareButton {...props} />
           } else {
-            return null;
+            return null
           }
         },
       }}
     />
-  );
+  )
 }
 
 function safeLocation() {
   if (typeof window === "undefined") {
-    return "";
+    return ""
   }
-  return window.location.toString();
+  return window.location.toString()
 }
 
-const useLink = Head.useLink
-  ? Head.useLink
-  : () => ({
-      url: safeLocation(),
-    });
-
 function ShareButton(props) {
-  const link = useLink?.();
-  const url = link?.url ?? safeLocation();
+  const url = safeLocation()
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={() => {
-        Share.share({
-          url,
-        });
+        Share.shareAsync(url)
       }}
     >
       <Icon name="share" fill={props.tintColor} width={24} height={24} />
     </TouchableOpacity>
-  );
+  )
 }
 
 function isSharingAvailable() {
   if (Platform.OS === "web") {
     if (typeof navigator === "undefined") {
-      return false;
+      return false
     }
 
-    return !!navigator.share;
+    return !!navigator.share
   }
-  return true;
+  return true
 }
