@@ -4,7 +4,7 @@
     "icon": "./assets/app-icon.png",
     "web": {
       "bundler": "metro",
-      "output": "static"
+      "output": "server"
     },
     "name": "Expo Twitter",
     "slug": "twitter",
